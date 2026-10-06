@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  # 1. Local S3 Object Store (MinIO)
+  minio:
+    image: minio/minio:latest
+    container_name: fintech-s3-lakehouse
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadminpassword
+    ports:
+      - "9000:9000"      # S3 API endpoint
+      - "9001:9001"      # Web Browser Console
+    command: server /data --console-address ":9001"
+    volumes:
+      - ./data/minio_storage:/data
+
+  # 2. Local Vector Database for Fraud & AML Search (Qdrant)
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: fintech-qdrant-vectordb
+    ports:
+      - "6333:6333"      # Vector Search API
+      - "6334:6334"      # gRPC endpoint
+    volumes:
+      - ./data/qdrant_storage:/qdrant/storage

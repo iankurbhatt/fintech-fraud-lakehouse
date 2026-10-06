@@ -1,0 +1,18 @@
+# Core Processing & Big Data Engine
+pyspark>=3.5.0
+
+# Cloud Storage & Parquet/Delta
+pyarrow>=15.0.0
+boto3>=1.34.0
+
+# Vector Database & AI
+qdrant-client>=1.9.0
+sentence-transformers>=3.0.0
+
+# Interactive UI & Analytics
+streamlit>=1.35.0
+pandas>=2.2.0
+plotly>=5.20.0
+
+# Quality & Testing
+pytest>=8.0.0
